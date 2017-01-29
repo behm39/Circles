@@ -24,7 +24,7 @@ public class Vector {
 		y -= v.getY();
 	}
 	
-	public void multiply(Vector v){
+	public void add(Vector v){
 		x += v.getX();
 		y += v.getY();
 	}
@@ -35,17 +35,29 @@ public class Vector {
 	}
 	
 	public void setX(double x){
-		x = this.x;
+		this.x = x;
 	}
 	
 	public void setY(double y){
-		y = this.y;
+		this.y = y;
 	}
 	
 	public void setMag(double m){
-		double t = Math.atan(y/x);
-		//TODO: Finish this.
-		
+		double theta = this.getTheta();
+		this.x = Math.cos(theta);
+		this.y = Math.sin(theta);
+		this.scale(m);
+	}
+	
+	public void setTheta(double t){
+		double mag = this.getMag();
+		x = Math.cos(t);
+		y = Math.sin(t);
+		this.setMag(mag);
+	}
+	
+	public double getTheta(){
+		return Math.atan(y/x);
 	}
 	
 	public double getMag(){
