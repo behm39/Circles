@@ -1,30 +1,30 @@
 package circles;
 
-public class Vectors {
+public class Vector {
 	private double x;
 	private double y;
 	
-	public Vectors(){
+	public Vector(){
 		x = 0;
 		y = 0;
 	}
 	
-	public Vectors(double x, double y){
+	public Vector(double x, double y){
 		this.x = x;
 		this.y = y;
 	}
 
-	public Vectors(double t){
+	public Vector(double t){
 		x = Math.cos(t);
 		y = Math.sin(t);
 	}
 	
-	public void subtract(Vectors v){
+	public void subtract(Vector v){
 		x -= v.getX();
 		y -= v.getY();
 	}
 	
-	public void multiply(Vectors v){
+	public void multiply(Vector v){
 		x += v.getX();
 		y += v.getY();
 	}
