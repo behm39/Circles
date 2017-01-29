@@ -2,15 +2,18 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Main extends Canvas implements Runnable {
 
     public static final String TITLE = "Circles";
-    public static final int WIDTH = 640, HEIGHT = 480;
+    public static final int WIDTH = 640, HEIGHT = 480, NUM_CIRCLES = 10;
 
     private Thread thread;
     private boolean running;
+
+    ArrayList<Circle> circles;
 
     public Main() {
 
@@ -18,6 +21,11 @@ public class Main extends Canvas implements Runnable {
         this.running = false;
 
         new Window(this, TITLE, WIDTH, HEIGHT);
+
+        this.circles = new ArrayList<Circle>();
+        for (int i = 0; i < NUM_CIRCLES; i++) {
+            this.circles.add(new Circle(this));
+        }
 
         this.start();
 
@@ -38,7 +46,9 @@ public class Main extends Canvas implements Runnable {
     }
 
     public void tick() {
-
+        for (int i = 0; i < this.circles.size(); i++) {
+            this.circles.get(i).tick();
+        }
     }
 
     public void render() {
@@ -52,6 +62,11 @@ public class Main extends Canvas implements Runnable {
 
         g2d.setColor(Color.BLACK);
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+        g2d.setColor(Color.WHITE);
+        for (int i = 0; i < this.circles.size(); i++) {
+            this.circles.get(i).render(g2d);
+        }
 
         g2d.dispose();
         bs.show();
