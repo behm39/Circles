@@ -10,8 +10,8 @@ public class Vectors {
 	}
 	
 	public Vectors(double x, double y){
-		x = this.x;
-		y = this.y;
+		this.x = x;
+		this.y = y;
 	}
 
 	public Vectors(double t){
@@ -44,6 +44,7 @@ public class Vectors {
 	
 	public void setMag(double m){
 		double t = Math.atan(y/x);
+		//TODO: Finish this.
 		
 	}
 	
